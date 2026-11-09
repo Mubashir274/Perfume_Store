@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | Nostalgic Fragrance</title>
+
+    <link rel="stylesheet" href="/static/store/style.css">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #090909;
+            color: #f5f0e6;
+            font-family: Georgia, serif;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .announcement {
+            background: #c6a66b;
+            color: #111;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #29251e;
+        }
+
+        .brand-name {
+            color: #d6b878;
+            font-size: 25px;
+            letter-spacing: 3px;
+        }
+
+        .detail-header a {
+            color: #d6b878;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .breadcrumb {
+            padding: 25px 8%;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .breadcrumb a { color: #d6b878; }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 75px;
+            padding: 20px 8% 80px;
+            align-items: start;
+        }
+
+        .product-image-box {
+            background: radial-gradient(circle, #29231b, #111 65%, #080808);
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #302719;
+            padding: 35px;
+        }
+
+        .product-image-box img {
+            width: 100%;
+            height: 490px;
+            object-fit: contain;
+        }
+
+        .product-info { padding-top: 25px; }
+
+        .brand-label {
+            color: #c6a66b;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .product-info h1 {
+            font-size: 46px;
+            font-weight: normal;
+            line-height: 1.2;
+            margin: 18px 0;
+            color: #f4ead8;
+        }
+
+        .product-description {
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        .price {
+            color: #d6b878;
+            font-size: 32px;
+            margin: 20px 0;
+        }
+
+        .section-label {
+            color: #eee2cd;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin: 28px 0 15px;
+            text-transform: uppercase;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            background: transparent;
+            color: #ddd;
+            border: 1px solid #62543a;
+            padding: 14px 28px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .size-option:hover,
+        .size-option.selected {
+            background: #c6a66b;
+            color: #111;
+            border-color: #c6a66b;
+        }
+
+        .stock-text {
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 14px;
+        }
+
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #62543a;
+        }
+
+        .quantity-control button {
+            background: transparent;
+            color: #d6b878;
+            border: none;
+            padding: 12px 17px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .quantity-control span {
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 18px;
+            background: #c6a66b;
+            border: 1px solid #c6a66b;
+            color: #111;
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .cart-button:hover {
+            background: transparent;
+            color: #d6b878;
+        }
+
+        .delivery-info {
+            margin-top: 30px;
+            border-top: 1px solid #302719;
+        }
+
+        .delivery-item {
+            padding: 17px 0;
+            border-bottom: 1px solid #302719;
+            color: #aaa;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .delivery-item span {
+            color: #d6b878;
+            margin-right: 10px;
+        }
+
+        .details-section {
+            padding: 70px 12%;
+            background: #101010;
+            border-top: 1px solid #302719;
+            text-align: center;
+        }
+
+        .details-section h2 {
+            color: #d6b878;
+            font-size: 30px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .details-section p {
+            max-width: 700px;
+            margin: 25px auto;
+            color: #aaa;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        .reviews-section {
+            padding: 80px 8%;
+            background: #0d0d0d;
+            border-top: 1px solid #302719;
+        }
+
+        .reviews-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .reviews-heading h2 {
+            color: #d6b878;
+            font-size: 34px;
+            font-weight: normal;
+            margin: 15px 0;
+        }
+
+        .reviews-heading p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .reviews-summary {
+            max-width: 850px;
+            margin: 0 auto 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            padding: 30px;
+            border: 1px solid #3b3020;
+        }
+
+        .overall-rating { text-align: center; }
+
+        .overall-rating h3 {
+            font-size: 55px;
+            color: #d6b878;
+            margin: 0;
+        }
+
+        .stars, .review-stars {
+            color: #d6b878;
+            letter-spacing: 4px;
+        }
+
+        .overall-rating p {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .rating-bars { width: 300px; }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 12px;
+            margin: 12px 0;
+        }
+
+        .rating-track {
+            height: 7px;
+            flex: 1;
+            background: #292929;
+        }
+
+        .rating-track div {
+            height: 100%;
+            background: #c6a66b;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            background: #151515;
+            border: 1px solid #302719;
+            padding: 30px;
+            transition: .3s;
+        }
+
+        .review-card:hover {
+            border-color: #c6a66b;
+            transform: translateY(-5px);
+        }
+
+        .review-card h3 {
+            color: #eee2cd;
+            font-size: 20px;
+            font-weight: normal;
+            margin: 20px 0 12px;
+        }
+
+        .review-card p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+            min-height: 75px;
+        }
+
+        .review-customer {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            border-top: 1px solid #302719;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #c6a66b;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .review-customer strong {
+            display: block;
+            color: #d6b878;
+            font-size: 13px;
+        }
+
+        .review-customer small {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .detail-footer {
+            text-align: center;
+            padding: 35px;
+            color: #888;
+            border-top: 1px solid #302719;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        @media(max-width: 850px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 20px 6% 50px;
+            }
+
+            .product-image-box { min-height: 380px; }
+
+            .product-image-box img { height: 340px; }
+
+            .product-info h1 { font-size: 34px; }
+
+            .detail-header { padding: 20px 6%; }
+
+            .brand-name { font-size: 18px; }
+
+            .details-section { padding: 50px 7%; }
+
+            .review-cards { grid-template-columns: 1fr; }
+
+            .reviews-summary {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .rating-bars { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="announcement">
+    NOSTALGIC FRAGRANCE — DISCOVER YOUR SIGNATURE SCENT
+</div>
+
+<header class="detail-header">
+    <div class="brand-name">NOSTALGIC FRAGRANCE</div>
+    <a href="/">HOME</a>
+</header>
+
+<div class="breadcrumb">
+    <a href="/">Home</a> / Perfumes / {{ product.name }}
+</div>
+
+<section class="product-layout">
+
+    <div class="product-image-box">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+    </div>
+
+    <div class="product-info">
+
+        <div class="brand-label">Nostalgic Collection</div>
+
+        <h1>{{ product.name }}</h1>
+
+        <p class="product-description">
+            {{ product.description }}
+        </p>
+
+        <div class="price">Select a size</div>
+
+        <div class="section-label">Choose Your Size</div>
+
+        <div class="sizes">
+            {% for variant in product.variants.all %}
+                {% if variant.is_available %}
+                    <button
+                        type="button"
+                        class="size-option"
+                        data-price="{{ variant.price }}"
+                        data-stock="{{ variant.stock }}"
+                        data-variant-id="{{ variant.id }}">
+                        {{ variant.size }}
+                    </button>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="stock-text">
+            Please select a size to check availability.
+        </div>
+
+        <div class="section-label">Quantity</div>
+
+        <div class="quantity-row">
+            <div class="quantity-control">
+                <button type="button" id="minus">−</button>
+                <span id="quantity">1</span>
+                <button type="button" id="plus">+</button>
+            </div>
+        </div>
+
+        <form id="cartForm" method="POST" action="{% url 'add_to_cart' %}">
+            {% csrf_token %}
+
+            <input type="hidden" name="variant_id" id="variantId">
+            <input type="hidden" name="quantity" id="cartQuantity" value="1">
+
+            <button type="submit" class="cart-button" id="cartButton">
+                ADD TO CART
+            </button>
+        </form>
+
+        <div class="delivery-info">
+            <div class="delivery-item">
+                <span>✦</span> Carefully selected fragrance
+            </div>
+            <div class="delivery-item">
+                <span>✦</span> Choose your preferred bottle size
+            </div>
+            <div class="delivery-item">
+                <span>✦</span> Quality fragrance from Nostalgic Fragrance
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="details-section">
+    <div class="brand-label">THE EXPERIENCE</div>
+    <h2>About This Fragrance</h2>
+    <p>{{ product.description }}</p>
+</section>
+
+<section class="reviews-section">
+
+    <div class="reviews-heading">
+        <div class="brand-label">CUSTOMER EXPERIENCE</div>
+        <h2>What Our Customers Say</h2>
+        <p>Sample review design — replace with genuine customer feedback.</p>
+    </div>
+
+    <div class="reviews-summary">
+
+        <div class="overall-rating">
+            <h3>5.0</h3>
+            <div class="stars">★★★★★</div>
+            <p>Sample Rating</p>
+        </div>
+
+        <div class="rating-bars">
+            <div class="rating-row">
+                <span>5 ★</span>
+                <div class="rating-track">
+                    <div style="width: 95%"></div>
+                </div>
+                <span>95%</span>
+            </div>
+
+            <div class="rating-row">
+                <span>4 ★</span>
+                <div class="rating-track">
+                    <div style="width: 5%"></div>
+                </div>
+                <span>5%</span>
+            </div>
+
+            <div class="rating-row">
+                <span>3 ★</span>
+                <div class="rating-track">
+                    <div style="width: 0%"></div>
+                </div>
+                <span>0%</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="review-cards">
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>Beautiful Fragrance</h3>
+            <p>
+                Loved the fragrance and the elegant presentation.
+                A beautiful experience.
+            </p>
+            <div class="review-customer">
+                <div class="customer-avatar">A</div>
+                <div>
+                    <strong>Ahmed</strong>
+                    <small>Sample Review</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>Worth Every Penny</h3>
+            <p>
+                A lovely scent with a premium feel.
+                Really enjoyed this perfume.
+            </p>
+            <div class="review-customer">
+                <div class="customer-avatar">S</div>
+                <div>
+                    <strong>Sarah</strong>
+                    <small>Sample Review</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3>Elegant Experience</h3>
+            <p>
+                The fragrance has a wonderful character.
+                Definitely a memorable experience.
+            </p>
+            <div class="review-customer">
+                <div class="customer-avatar">M</div>
+                <div>
+                    <strong>Muhammad</strong>
+                    <small>Sample Review</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="detail-footer">
+    © NOSTALGIC FRAGRANCE — ALL RIGHTS RESERVED
+</footer>
+
+<script>
+    const sizeButtons = document.querySelectorAll('.size-option');
+    const priceElement = document.querySelector('.price');
+    const stockElement = document.querySelector('.stock-text');
+
+    const quantityElement = document.getElementById('quantity');
+    const minusButton = document.getElementById('minus');
+    const plusButton = document.getElementById('plus');
+
+    const cartForm = document.getElementById('cartForm');
+    const variantIdInput = document.getElementById('variantId');
+    const cartQuantityInput = document.getElementById('cartQuantity');
+
+    let quantity = 1;
+    let selectedStock = 0;
+    let selectedVariantId = null;
+
+    function updateQuantity() {
+        quantityElement.textContent = quantity;
+    }
+
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+
+            sizeButtons.forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+
+            priceElement.textContent = 'Rs. ' + this.dataset.price;
+
+            selectedStock = parseInt(this.dataset.stock) || 0;
+            selectedVariantId = this.dataset.variantId;
+
+            quantity = 1;
+            updateQuantity();
+
+            stockElement.textContent = selectedStock > 0
+                ? 'In Stock — ' + selectedStock + ' available'
+                : 'Currently out of stock';
+        });
+    });
+
+    plusButton.addEventListener('click', function() {
+        if (quantity < 99) {
+            quantity++;
+            updateQuantity();
+        }
+    });
+
+    minusButton.addEventListener('click', function() {
+        if (quantity > 1) {
+            quantity--;
+            updateQuantity();
+        }
+    });
+
+    cartForm.addEventListener('submit', function(event) {
+
+        if (!selectedVariantId) {
+            event.preventDefault();
+            alert('Please select a size.');
+            return;
+        }
+
+        if (selectedStock < 1) {
+            event.preventDefault();
+            alert('This size is out of stock.');
+            return;
+        }
+
+        if (quantity > selectedStock) {
+            event.preventDefault();
+            alert('Only ' + selectedStock + ' items are available.');
+            return;
+        }
+
+        variantIdInput.value = selectedVariantId;
+        cartQuantityInput.value = quantity;
+    });
+
+    if (sizeButtons.length > 0) {
+        sizeButtons[0].click();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | Nostalgic Fragrance</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 35px 15px;
+            background: #080808;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: #111;
+            border: 1px solid #b89550;
+            border-radius: 15px;
+            padding: 35px;
+        }
+
+        .success-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #b89550;
+            color: #080808;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d6b46a;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            text-align: center;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .order-number {
+            text-align: center;
+            color: #d6b46a;
+            font-size: 20px;
+            margin: 25px 0;
+        }
+
+        h2 {
+            color: #d6b46a;
+            font-size: 19px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 12px;
+            margin-top: 30px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .detail-box {
+            background: #1b1b1b;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .detail-box span {
+            display: block;
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .detail-box strong {
+            color: #fff;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .address {
+            grid-column: 1 / -1;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        th, td {
+            padding: 13px 10px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
+
+        th {
+            color: #d6b46a;
+        }
+
+        .total {
+            text-align: right;
+            color: #d6b46a;
+            font-size: 22px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 14px 28px;
+            background: #c5a15b;
+            color: #080808;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e2c17b;
+        }
+
+        @media (max-width: 550px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .container {
+                padding: 22px 15px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .address {
+                grid-column: auto;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="success-icon">✓</div>
+
+    <h1>Order Confirmed!</h1>
+
+    <p class="message">
+        Thank you for shopping with Nostalgic Fragrance.
+        Your order has been successfully placed.
+        We will contact you soon.
+    </p>
+
+    <div class="order-number">
+        Order Number: #{{ order.id }}
+    </div>
+
+    <h2>Customer Details</h2>
+
+    <div class="details">
+
+        <div class="detail-box">
+            <span>Customer Name</span>
+            <strong>{{ order.customer_name }}</strong>
+        </div>
+
+        <div class="detail-box">
+            <span>Mobile Number</span>
+            <strong>{{ order.mobile }}</strong>
+        </div>
+
+        <div class="detail-box">
+            <span>City</span>
+            <strong>{{ order.city }}</strong>
+        </div>
+
+        <div class="detail-box">
+            <span>Payment Method</span>
+            <strong>{{ order.get_payment_method_display }}</strong>
+        </div>
+
+        <div class="detail-box">
+            <span>Order Status</span>
+            <strong>{{ order.status }}</strong>
+        </div>
+
+        <div class="detail-box">
+            <span>Order Date</span>
+            <strong>{{ order.created_at|date:"d M Y, h:i A" }}</strong>
+        </div>
+
+        <div class="detail-box address">
+            <span>Delivery Address</span>
+            <strong>{{ order.address }}</strong>
+        </div>
+
+    </div>
+
+    <h2>Order Items</h2>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in order.items.all %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>Rs. {{ item.price }}</td>
+                    <td>Rs. {{ item.subtotal }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No items found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total">
+        Total: Rs. {{ order.total_amount }}
+    </div>
+
+    <a href="/" class="btn">Continue Shopping</a>
+
+</div>
+
+</body>
+</html>

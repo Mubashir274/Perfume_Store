@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | Nostalgic Fragrance</title>
+
+    <link rel="stylesheet" href="/static/store/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 15px;
+            background: #080808;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .tracking-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 35px;
+            background: #151515;
+            border: 1px solid #b99a5b;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af67;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            color: #d4af67;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background: #222;
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #d4af67;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 12px;
+            background: #451b1b;
+            color: #ffaaaa;
+            border-radius: 6px;
+        }
+
+        .order-details {
+            margin-top: 30px;
+            padding: 20px;
+            background: #202020;
+            border-radius: 8px;
+        }
+
+        .order-details h2 {
+            color: #d4af67;
+        }
+
+        .detail {
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .products {
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #d4af67;
+            text-decoration: none;
+        }
+
+        @media (max-width: 500px) {
+            .tracking-container {
+                padding: 22px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="tracking-container">
+
+    <h1>Track Your Order</h1>
+    <p class="subtitle">Enter your order details to check your order status.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Order ID</label>
+        <input
+            type="number"
+            name="order_id"
+            placeholder="Enter your Order ID"
+            required
+        >
+
+        <label>Mobile Number</label>
+        <input
+            type="text"
+            name="mobile"
+            placeholder="Enter your mobile number"
+            required
+        >
+
+        <button type="submit">Track Order</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if order %}
+        <div class="order-details">
+
+            <h2>Order Details</h2>
+
+            <div class="detail">Order ID: #{{ order.id }}</div>
+            <div class="detail">Customer: {{ order.customer_name }}</div>
+            <div class="detail">Mobile: {{ order.mobile }}</div>
+            <div class="detail">City: {{ order.city }}</div>
+            <div class="detail">Address: {{ order.address }}</div>
+            <div class="detail">Total Amount: Rs. {{ order.total_amount }}</div>
+            <div class="detail">Payment: {{ order.get_payment_method_display }}</div>
+            <div class="detail">Order Status: <strong>{{ order.status }}</strong></div>
+            <div class="detail">Order Date: {{ order.created_at }}</div>
+
+            <div class="products">
+                <h3>Ordered Products</h3>
+
+                {% for item in order.items.all %}
+                    <p>
+                        {{ item.product.name }} -
+                        {{ item.size }} -
+                        Quantity: {{ item.quantity }} -
+                        Rs. {{ item.subtotal }}
+                    </p>
+                {% empty %}
+                    <p>No products found.</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="home-link">← Back to Home</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostalgic Fragrance | Luxury Perfumes</title>
+
+    <link rel="stylesheet" href="/static/store/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #080808;
+            color: #f5f0e8;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .announcement {
+            background: #c6a15b;
+            color: #111;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            background: rgba(8, 8, 8, 0.98);
+            border-bottom: 1px solid #302719;
+        }
+
+        .navbar {
+            max-width: 1250px;
+            margin: auto;
+            padding: 16px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color: #d6b36b;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid #80683d;
+            color: #d6b36b;
+            font-size: 26px;
+            width: 43px;
+            height: 40px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 17px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a:hover {
+            color: #d6b36b;
+        }
+
+        .nav-auth-btn {
+            background: transparent;
+            color: #d6b36b;
+            border: 1px solid #80683d;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 11px;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .nav-auth-btn:hover {
+            background: #c6a15b;
+            color: #080808;
+        }
+
+        .nav-username {
+            color: #e2c27e;
+            font-size: 12px;
+        }
+
+        .nav-logout-form {
+            display: inline;
+            margin: 0;
+        }
+
+        .cart-nav {
+            position: relative;
+            font-size: 23px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            background: #c6a15b;
+            color: #080808;
+            border-radius: 50%;
+            min-width: 19px;
+            height: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 65px 25px;
+            background:
+                linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
+                radial-gradient(circle, #3a2c18 0%, #080808 70%);
+        }
+
+        .hero-inner {
+            max-width: 1150px;
+            width: 100%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+            min-width: 0;
+        }
+
+        .hero-label {
+            color: #c6a15b;
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin: 0;
+        }
+
+        .hero h1 {
+            color: #d6b36b;
+            font-size: clamp(36px, 5vw, 62px);
+            letter-spacing: 4px;
+            line-height: 1.15;
+            margin: 15px 0;
+        }
+
+        .hero-description {
+            color: #d0c8bb;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 0 14px;
+        }
+
+        .hero-tagline {
+            color: #e2c27e;
+            font-size: 15px;
+            letter-spacing: 3px;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .hero-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+
+            .hero-brand-logo {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            mix-blend-mode: screen;
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 62%, transparent 100%);
+            mask-image: radial-gradient(ellipse at center, #000 62%, transparent 100%);
+        }
+
+        .gold-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 32px;
+            background: #c6a15b;
+            color: #080808;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gold-btn:hover {
+            background: #e2c27e;
+        }
+
+        /* SECTIONS */
+
+        .section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 65px 25px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            color: #d6b36b;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        .section-heading p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* PRODUCTS */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #111;
+            border: 1px solid #302719;
+            padding: 12px;
+            text-align: center;
+            transition: .3s;
+            min-width: 0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #c6a15b;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 235px;
+            object-fit: contain;
+            background: #17130e;
+            display: block;
+        }
+
+        .product-card h3 {
+            color: #e2c27e;
+            font-size: 16px;
+            margin: 14px 0 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .product-description {
+            color: #aaa;
+            font-size: 12px;
+            line-height: 1.5;
+            min-height: 36px;
+            margin: 8px 0;
+        }
+
+        .size-options {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            margin: 14px 0;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 8px 13px;
+            background: transparent;
+            color: #d6b36b;
+            border: 1px solid #80683d;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .size-option.active {
+            background: #c6a15b;
+            color: #080808;
+        }
+
+        .product-price {
+            color: #e2c27e;
+            font-size: 19px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            padding: 11px 7px;
+            background: #c6a15b;
+            color: #080808;
+            border: none;
+            font-weight: bold;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .add-cart-btn:hover {
+            background: #e2c27e;
+        }
+
+        .add-cart-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .view-details {
+            display: block;
+            margin-top: 12px;
+            color: #d6b36b;
+            font-size: 12px;
+        }
+
+        /* PREMIUM ABOUT SECTION */
+
+        .about-section {
+            max-width: 100%;
+            padding: 85px 25px;
+            background:
+                radial-gradient(circle at top, #302314 0%, #111 48%, #080808 100%);
+            border-top: 1px solid #493820;
+            border-bottom: 1px solid #493820;
+        }
+
+        .about-container {
+            max-width: 1050px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-label {
+            color: #c6a15b;
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .about-content h2 {
+            color: #e2c27e;
+            font-size: 38px;
+            line-height: 1.25;
+            letter-spacing: 2px;
+            margin: 0 0 22px;
+        }
+
+        .about-content p {
+            color: #bbb;
+            font-size: 15px;
+            line-height: 1.9;
+            margin: 0 0 16px;
+        }
+
+        .about-highlight {
+            border-left: 2px solid #c6a15b;
+            padding: 12px 18px;
+            color: #e2c27e;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 25px;
+            background: rgba(198,161,91,.06);
+        }
+
+        .about-visual {
+            min-height: 360px;
+            border: 1px solid #70552d;
+            background:
+                linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.65)),
+                radial-gradient(ellipse at center, #62451f 0%, #24190d 45%, #090909 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .about-visual::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(214,179,107,.35);
+            pointer-events: none;
+        }
+
+        .about-visual-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-visual h3 {
+            color: #e2c27e;
+            font-size: 30px;
+            letter-spacing: 4px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .about-visual p {
+            color: #d0c8bb;
+            letter-spacing: 3px;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature {
+            padding: 25px 15px;
+            border: 1px solid #302719;
+            background: #111;
+        }
+
+        .feature h3 {
+            color: #d6b36b;
+        }
+
+        .feature p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+
+        .contact-section {
+            text-align: center;
+            background: #15110b;
+        }
+
+        .contact-section h2 {
+            color: #d6b36b;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 35px 20px;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid #302719;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .message-box {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 10000;
+            background: #c6a15b;
+            color: #080808;
+            padding: 14px 22px;
+            font-weight: bold;
+            display: none;
+            border-radius: 4px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+                padding: 14px 18px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 210px;
+            }
+
+            .hero-inner {
+                gap: 30px;
+            }
+
+            .hero-brand-logo {
+                max-width: 300px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .announcement {
+                font-size: 9px;
+                padding: 9px 5px;
+                letter-spacing: 1px;
+            }
+
+            .navbar {
+                position: relative;
+                padding: 12px 14px;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 13px;
+            }
+
+            /* MENU ON LEFT */
+
+            .menu-toggle {
+                display: flex;
+                order: 1;
+                width: 40px;
+                height: 40px;
+                font-size: 25px;
+            }
+
+            .logo {
+                order: 2;
+                font-size: 15px;
+                letter-spacing: 1px;
+            }
+
+            /* LEFT SLIDE MENU */
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: min(82%, 310px);
+                height: 100dvh;
+                background: #0c0b09;
+                border-right: 1px solid #80683d;
+                padding: 75px 22px 30px;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 0;
+                overflow-y: auto;
+                z-index: 10002;
+                transform: translateX(-105%);
+                transition: transform .35s ease;
+                box-shadow: 10px 0 30px rgba(0,0,0,.5);
+            }
+
+            .nav-links.show-menu {
+                transform: translateX(0);
+            }
+
+            .nav-links > a:not(.nav-auth-btn):not(.cart-nav) {
+                display: block;
+                padding: 15px 5px;
+                border-bottom: 1px solid #302719;
+                font-size: 13px;
+            }
+
+            .nav-links .nav-auth-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+                margin-top: 12px;
+                font-size: 12px;
+            }
+
+            .nav-logout-form {
+                display: block;
+                width: 100%;
+            }
+
+            .nav-username {
+                display: block;
+                text-align: center;
+                color: #e2c27e;
+                padding: 15px 5px;
+                border-bottom: 1px solid #302719;
+            }
+
+            .cart-nav {
+                display: block;
+                text-align: center;
+                padding: 15px;
+                font-size: 23px;
+            }
+
+            .cart-count {
+                position: relative;
+                display: inline-flex;
+                top: -10px;
+                right: 0;
+            }
+
+            /* CLOSE BUTTON */
+
+            .menu-close {
+                position: fixed;
+                top: 17px;
+                left: 245px;
+                z-index: 10004;
+                display: none;
+                background: #c6a15b;
+                color: #080808;
+                border: none;
+                width: 36px;
+                height: 36px;
+                font-size: 22px;
+                cursor: pointer;
+            }
+
+            .nav-links.show-menu .menu-close {
+                display: block;
+            }
+
+            /* DARK OVERLAY */
+
+            .menu-overlay {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,.72);
+                z-index: 10001;
+                opacity: 0;
+                visibility: hidden;
+                transition: .3s;
+            }
+
+            .menu-overlay.show-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* HERO MOBILE */
+
+            .hero {
+                min-height: auto;
+                padding: 40px 17px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-label {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .hero h1 {
+                font-size: clamp(29px, 8vw, 42px);
+                letter-spacing: 2px;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 13px;
+                line-height: 1.8;
+            }
+
+            .hero-tagline {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+
+            .hero-brand-logo {
+                width: 100%;
+                max-width: 230px;
+                max-height: 260px;
+                margin: 0 auto;
+            }
+
+            .gold-btn {
+                padding: 13px 22px;
+                font-size: 11px;
+            }
+
+            .section {
+                padding: 45px 13px;
+            }
+
+            .section-heading {
+                margin-bottom: 24px;
+            }
+
+            .section-heading h2 {
+                font-size: 23px;
+                letter-spacing: 2px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 11px;
+            }
+
+            .product-card {
+                padding: 8px;
+            }
+
+            .product-image {
+                height: 155px;
+            }
+
+            .product-card h3 {
+                font-size: 13px;
+                margin: 10px 0 6px;
+            }
+
+            .product-description {
+                font-size: 10px;
+                min-height: 30px;
+            }
+
+            .size-options {
+                gap: 5px;
+                margin: 10px 0;
+            }
+
+            .size-option {
+                padding: 7px 9px;
+                font-size: 10px;
+            }
+
+            .product-price {
+                font-size: 15px;
+                margin: 10px 0;
+            }
+
+            .add-cart-btn {
+                padding: 10px 4px;
+                font-size: 9px;
+            }
+
+            .view-details {
+                font-size: 10px;
+            }
+
+            /* ABOUT MOBILE */
+
+            .about-section {
+                padding: 55px 17px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .about-label {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .about-content h2 {
+                font-size: 29px;
+                line-height: 1.35;
+                margin-bottom: 17px;
+            }
+
+            .about-content p {
+                font-size: 13px;
+                line-height: 1.9;
+                text-align: center;
+            }
+
+            .about-highlight {
+                text-align: left;
+                font-size: 12px;
+                margin-top: 20px;
+                padding: 12px;
+            }
+
+            .about-visual {
+                min-height: 230px;
+                padding: 25px;
+            }
+
+            .about-visual h3 {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            .about-visual p {
+                font-size: 9px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .feature {
+                padding: 22px 15px;
+            }
+
+            .feature h3 {
+                font-size: 15px;
+            }
+
+            .feature p {
+                font-size: 12px;
+            }
+
+            .contact-section {
+                padding: 40px 15px;
+            }
+
+            .contact-section h2 {
+                font-size: 22px;
+            }
+
+            .contact-section p {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            footer {
+                padding: 28px 15px;
+                font-size: 11px;
+                line-height: 1.8;
+            }
+
+            .message-box {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .logo {
+                font-size: 13px;
+            }
+
+            .products-grid {
+                gap: 8px;
+            }
+
+            .product-image {
+                height: 135px;
+            }
+
+            .about-content h2 {
+                font-size: 26px;
+            }
+
+            .hero-brand-logo {
+                max-width: 190px;
+            }
+        }
+
+        @media (min-width: 701px) {
+            .menu-overlay,
+            .menu-close {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="announcement">
+    LUXURY FRAGRANCES | DISCOVER YOUR SIGNATURE SCENT
+</div>
+
+<header>
+    <nav class="navbar">
+
+        <button type="button"
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open menu"
+                aria-expanded="false">
+            ☰
+        </button>
+
+        <a href="{% url 'home' %}" class="logo">
+            NOSTALGIC FRAGRANCE
+        </a>
+
+        <div class="nav-links" id="navLinks">
+
+            <button type="button"
+                    class="menu-close"
+                    id="menuClose"
+                    aria-label="Close menu">
+                ✕
+            </button>
+
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="#products">SHOP</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <a href="{% url 'order_tracking' %}">TRACK ORDER</a>
+
+            {% if user.is_authenticated %}
+
+                <span class="nav-username">
+                    Hi, {{ user.username }}
+                </span>
+
+                <form method="POST"
+                      action="{% url 'customer_logout' %}"
+                      class="nav-logout-form">
+
+                    {% csrf_token %}
+
+                    <button type="submit" class="nav-auth-btn">
+                        LOGOUT
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'customer_login' %}"
+                   class="nav-auth-btn">
+                    LOGIN
+                </a>
+
+                <a href="{% url 'signup' %}"
+                   class="nav-auth-btn">
+                    SIGNUP
+                </a>
+
+            {% endif %}
+
+            <a href="{% url 'view_cart' %}" class="cart-nav">
+                🛒
+                <span class="cart-count">
+                    {{ cart_count|default:0 }}
+                </span>
+            </a>
+
+        </div>
+    </nav>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- HERO SECTION: TEXT LEFT, LOGO RIGHT -->
+
+<section class="hero">
+    <div class="hero-inner">
+
+        <div class="hero-content">
+
+            <p class="hero-label">THE ART OF LUXURY FRAGRANCE</p>
+
+            <h1>NOSTALGIC FRAGRANCE</h1>
+
+            <p class="hero-description">
+                Discover unforgettable fragrances crafted to leave
+                a lasting impression. Make every moment memorable.
+            </p>
+
+            <p class="hero-tagline">Where Scent Meets Soul</p>
+
+            <a href="#products" class="gold-btn">
+                SHOP NOW
+            </a>
+
+        </div>
+
+        <div class="hero-logo-wrap">
+            <img src="/media/products/golden logo.jpeg"
+                 alt="Nostalgic Fragrance — Where Scent Meets Soul"
+                 class="hero-brand-logo">
+        </div>
+
+    </div>
+</section>
+
+<section class="section" id="products">
+
+    <div class="section-heading">
+        <h2>OUR COLLECTION</h2>
+        <p>Find the fragrance that defines you.</p>
+    </div>
+
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            {% if product.image %}
+
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="product-image">
+
+            {% else %}
+
+                <div class="product-image"></div>
+
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+
+            <p class="product-description">
+                {{ product.description|truncatewords:12 }}
+            </p>
+
+            <div class="size-options">
+
+                {% for variant in product.variants.all %}
+
+                    {% if variant.is_available and variant.stock > 0 %}
+
+                    <button
+                        type="button"
+                        class="size-option"
+                        data-price="{{ variant.price }}"
+                        data-variant-id="{{ variant.id }}"
+                        data-stock="{{ variant.stock }}">
+
+                        {{ variant.size }}
+
+                    </button>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+            <div class="product-price">
+                <span class="price-value">Select Size</span>
+            </div>
+
+            <form method="POST"
+                  action="{% url 'add_to_cart' %}"
+                  class="add-cart-form">
+
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="variant_id"
+                       class="selected-variant">
+
+                <input type="hidden"
+                       name="quantity"
+                       value="1">
+
+                <button type="submit"
+                        class="add-cart-btn"
+                        disabled>
+                    SELECT SIZE
+                </button>
+
+            </form>
+
+            <a href="{% url 'product_detail' product.id %}"
+               class="view-details">
+                VIEW DETAILS
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <p>No products available right now.</p>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+
+<section class="about-section" id="about">
+
+    <div class="about-container">
+
+        <div class="about-content">
+
+            <div class="about-label">
+                DISCOVER OUR WORLD
+            </div>
+
+            <h2>
+                MORE THAN A FRAGRANCE,
+                IT'S A MEMORY.
+            </h2>
+
+            <p>
+                At Nostalgic Fragrance, we believe every scent
+                tells a story. A fragrance can bring back beautiful
+                memories, create special moments and express
+                your unique personality.
+            </p>
+
+            <p>
+                Our collection is created for people who appreciate
+                elegance, confidence and timeless luxury.
+                Every fragrance is an opportunity to make
+                a lasting impression.
+            </p>
+
+            <div class="about-highlight">
+                "Your fragrance is your signature.
+                Let every moment tell your story."
+            </div>
+
+            <a href="#products" class="gold-btn">
+                EXPLORE COLLECTION
+            </a>
+
+        </div>
+
+        <div class="about-visual">
+
+            <div class="about-visual-content">
+
+                <h3>
+                    NOSTALGIC<br>
+                    FRAGRANCE
+                </h3>
+
+                <p>
+                    LUXURY • ELEGANCE • MEMORIES
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-heading">
+        <h2>WHY CHOOSE US</h2>
+        <p>Experience fragrance with confidence.</p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <h3>PREMIUM QUALITY</h3>
+            <p>Carefully selected fragrances for a memorable experience.</p>
+        </div>
+
+        <div class="feature">
+            <h3>LONG LASTING</h3>
+            <p>Scents designed to make a lasting impression.</p>
+        </div>
+
+        <div class="feature">
+            <h3>EXCLUSIVE COLLECTION</h3>
+            <p>Discover a fragrance that matches your personality.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section contact-section" id="contact">
+
+    <h2>FIND YOUR SIGNATURE SCENT</h2>
+
+    <p>Explore the Nostalgic Fragrance collection today.</p>
+
+    <a href="#products" class="gold-btn">
+        SHOP NOW
+    </a>
+
+</section>
+
+<footer>
+
+    <p>NOSTALGIC FRAGRANCE</p>
+    <p>Luxury Fragrances. Timeless Memories.</p>
+    <p>© 2026 Nostalgic Fragrance. All Rights Reserved.</p>
+
+</footer>
+
+<div class="message-box" id="cartMessage"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* MOBILE SLIDE MENU */
+
+    const menuToggle = document.getElementById("menuToggle");
+    const menuClose = document.getElementById("menuClose");
+    const navLinks = document.getElementById("navLinks");
+    const menuOverlay = document.getElementById("menuOverlay");
+
+    function openMenu() {
+        navLinks.classList.add("show-menu");
+        menuOverlay.classList.add("show-overlay");
+        document.body.classList.add("menu-open");
+        menuToggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMenu() {
+        navLinks.classList.remove("show-menu");
+        menuOverlay.classList.remove("show-overlay");
+        document.body.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+    menuOverlay.addEventListener("click", closeMenu);
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeMenu();
+        }
+    });
+
+
+    /* PRODUCT SIZE SELECTION */
+
+    document.querySelectorAll(".product-card").forEach(function (card) {
+
+        const sizeButtons = card.querySelectorAll(".size-option");
+        const priceValue = card.querySelector(".price-value");
+        const variantInput = card.querySelector(".selected-variant");
+        const addButton = card.querySelector(".add-cart-btn");
+
+        sizeButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                sizeButtons.forEach(function (btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                priceValue.textContent = "Rs. " + button.dataset.price;
+                variantInput.value = button.dataset.variantId;
+
+                addButton.disabled = false;
+                addButton.textContent = "ADD TO CART";
+
+                if (parseInt(button.dataset.stock) < 1) {
+                    addButton.disabled = true;
+                    addButton.textContent = "OUT OF STOCK";
+                }
+
+            });
+
+        });
+
+        if (sizeButtons.length > 0) {
+            sizeButtons[0].click();
+        }
+
+    });
+
+
+    /* ADD TO CART */
+
+    document.querySelectorAll(".add-cart-form").forEach(function (form) {
+
+        form.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const button = form.querySelector(".add-cart-btn");
+            const originalText = button.textContent;
+
+            button.disabled = true;
+            button.textContent = "ADDING...";
+
+            try {
+
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || "Unable to add product.");
+                }
+
+                document.querySelectorAll(".cart-count").forEach(function (count) {
+                    count.textContent = data.cart_count;
+                });
+
+                button.textContent = "ADDED ✓";
+                showCartMessage("Product added to cart successfully!");
+
+                setTimeout(function () {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 1500);
+
+            } catch (error) {
+
+                showCartMessage(error.message);
+
+                button.textContent = originalText;
+                button.disabled = false;
+
+            }
+
+        });
+
+    });
+
+
+    function showCartMessage(message) {
+
+        const box = document.getElementById("cartMessage");
+
+        box.textContent = message;
+        box.style.display = "block";
+
+        setTimeout(function () {
+            box.style.display = "none";
+        }, 2500);
+
+    }
+
+});
+</script>
+
+</body>
+</html>
